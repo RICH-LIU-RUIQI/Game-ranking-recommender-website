@@ -9,6 +9,7 @@ import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import { useBlogTextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/blog';
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 import {Chip} from "@material-ui/core";
+import './styles/GameCard.css';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     root: {
@@ -21,18 +22,18 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
         marginLeft: 20,
         marginRight: 'auto',
         overflow: 'initial',
-        background: '#ffffff',
+        background: '#d0caca',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         paddingBottom: spacing(2),
         [breakpoints.up('md')]: {
-            flexDirection: 'row',
+            // flexDirection: 'row',
             paddingTop: spacing(2),
         },
     },
     media: {
-        width: '100%',
+        width: 300,
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: spacing(-1),
@@ -93,19 +94,18 @@ export const BlogCardDemo = React.memo(function BlogCard() {
                 {/*        message.substring(0, 50 || message.length)*/}
                 {/*    }*/}
                 {/*/>*/}
-                <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around', minHeight: 120}}>
-                    <span>Free</span>
+                <div id='card-container' >
+                    <span> Free </span>
                     <h2>Counter-Strike: Global Offensive</h2>
-                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10}}>
+                    <div id='labels' >
                         <Chip label="shooter" color="primary" size='small' />
                         <Chip label="multiplayer" color="primary" size='small' />
                         <Chip label="FPS" color="primary" size='small' />
                     </div>
                 </div>
-                <Button style={{marginTop: 30, backgroundColor: 'gray'}}>
+                <Button style={{marginTop: 20, backgroundColor: 'darkblue'}}>
                     <a href='https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/'
-                        style={{textDecoration: 'none', color: 'white', fontFamily: 'fantasy', fontSize: 'large'}}
-                    >
+                    id='game-link'>
                         Read more
                     </a>
 

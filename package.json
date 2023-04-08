@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.61",
+    "@mui/x-data-grid": "^6.0.4"
+  }
+}

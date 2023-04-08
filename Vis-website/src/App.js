@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-  MenuItem,
-  FormControl,
-  Select,
-  Card,
-  CardContent,
+    MenuItem,
+    FormControl,
+    Select,
+    Card,
+    CardContent, Tabs, Link,
 } from "@material-ui/core";
 
 import InfoBox from "./InfoBox";
@@ -16,6 +16,7 @@ import BlogCardDemo from "./GameDetail";
 
 import "leaflet/dist/leaflet.css";
 import "./styles/App.css";
+import Button from "@material-ui/core/Button";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
@@ -98,76 +99,88 @@ const App = () => {
       });
   };
 
+  const Rank = () => {
+      return (
+          <>
+              <div className="app__left">
+
+                  <div className="app__header">
+                      <h1>Game World Map</h1>
+                      <FormControl className="app__dropdown">
+                          <Select
+                              onChange={onCountryChange}
+                              variant="outlined"
+                              value={country}
+                          >
+                              <MenuItem value="worldwide">Worldwide</MenuItem>
+                              {countries.map((country, id) => (
+                                  <MenuItem key={id} value={country.value}>
+                                      {country.name}
+                                  </MenuItem>
+                              ))}
+                          </Select>
+                      </FormControl>
+                  </div>
+
+                  <div className="app__stats">
+                      <InfoBox
+                          active={casesType === "cases"}
+                          // onClick={(e) => setCasesType("cases")}
+                          onClick={()=>{}}
+                          game="PUBG"
+                          cate='Multiplayer, Shooting'
+                          image='https://www.itp.net/public/styles/full_img_sml/public/images/2019/05/27/44485-pubg_base1.jpg?itok=EF911Xan'
+                          total={prettyPrintStat(countryInfo.cases)}
+                          rank={1}
+                      />
+                      <InfoBox
+                          active={casesType === "recovered"}
+                          // onClick={(e) => setCasesType("recovered")}
+                          onClick={()=>{}}
+                          game="Overwatch"
+                          cate='Multiplayer, Online'
+                          image='https://images5.alphacoders.com/690/thumb-1920-690653.png'
+                          total={prettyPrintStat(countryInfo.recovered)}
+                          rank={2}
+                      />
+                      <InfoBox
+                          active={casesType === "deaths"}
+                          // onClick={(e) => setCasesType("deaths")}
+                          onClick={()=>{}}
+                          game="DOTA 2"
+                          cate='Multiplayer, Strategy'
+                          image='https://steamcdn-a.akamaihd.net/apps/dota2/images/blog/play/dota_heroes.png'
+                          total={prettyPrintStat(countryInfo.deaths)}
+                          rank={3}
+                      />
+                  </div>
+
+                  <Map
+                      casesType={casesType}
+                      countries={mapCountries}
+                      center={mapCenter}
+                      zoom={mapZoom}
+                  />
+              </div>
+              <Card className="app__right">
+                  <CardContent>
+                      <h3 className="app__graphTitle">Game Details</h3>
+                      <BlogCardDemo></BlogCardDemo>
+                      <h3 style={{marginTop: 40}}>Popular Game by country</h3>
+                      <Table countries={tableData} />
+                  </CardContent>
+              </Card>
+          </>
+      );
+  }
+
   return (
     <div className="app">
-      <div className="app__left">
+      <Rank></Rank>
+        <Link to='./Recommender.js'>
+            <Button/>
+        </Link>
 
-        <div className="app__header">
-          <h1>Game World Map</h1>
-          <FormControl className="app__dropdown">
-            <Select
-              onChange={onCountryChange}
-              variant="outlined"
-              value={country}
-            >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country, id) => (
-                <MenuItem key={id} value={country.value}>
-                  {country.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-
-        <div className="app__stats">
-          <InfoBox
-            active={casesType === "cases"}
-            // onClick={(e) => setCasesType("cases")}
-              onClick={()=>{}}
-            game="PUBG"
-            cate='Multiplayer, Shooting'
-            image='https://www.itp.net/public/styles/full_img_sml/public/images/2019/05/27/44485-pubg_base1.jpg?itok=EF911Xan'
-            total={prettyPrintStat(countryInfo.cases)}
-            rank={1}
-          />
-          <InfoBox
-            active={casesType === "recovered"}
-            // onClick={(e) => setCasesType("recovered")}
-            onClick={()=>{}}
-            game="Overwatch"
-            cate='Multiplayer, Online'
-            image='https://images5.alphacoders.com/690/thumb-1920-690653.png'
-            total={prettyPrintStat(countryInfo.recovered)}
-            rank={2}
-          />
-          <InfoBox
-            active={casesType === "deaths"}
-            // onClick={(e) => setCasesType("deaths")}
-            onClick={()=>{}}
-            game="DOTA 2"
-            cate='Multiplayer, Strategy'
-            image='https://steamcdn-a.akamaihd.net/apps/dota2/images/blog/play/dota_heroes.png'
-            total={prettyPrintStat(countryInfo.deaths)}
-            rank={3}
-          />
-        </div>
-
-        <Map
-          casesType={casesType}
-          countries={mapCountries}
-          center={mapCenter}
-          zoom={mapZoom}
-        />
-      </div>
-      <Card className="app__right">
-        <CardContent>
-            <h3 className="app__graphTitle">Game Details</h3>
-            <BlogCardDemo></BlogCardDemo>
-            <h3 style={{marginTop: 40}}>Popular Game by country</h3>
-            <Table countries={tableData} />
-        </CardContent>
-      </Card>
     </div>
   );
 };

@@ -1,0 +1,35 @@
+#card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 120px;
+}
+
+#card-container span {
+    font-size: large;
+    font-style: italic;
+
+}
+
+#card-container #labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+#card-container h2 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#card-container Button {
+    margin-top: auto;
+    background: royalblue;
+}
+
+#game-link {
+    text-decoration: none;
+    color: #f5f6fa;
+    font-family: 'fantasy';
+    font-size: large;
+}
