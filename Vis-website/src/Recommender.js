@@ -7,10 +7,6 @@ import './styles/recommender.css';
 export default function Recommender() {
     return (
         <div>
-            <div id='navigation' >
-                {/*navigation code*/}
-            </div>
-
             <div id='container'>
                 <Input/>
                 <ControlledAccordions/>

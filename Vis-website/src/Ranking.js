@@ -15,10 +15,10 @@ import LineGraph from "./LineGraph";
 import BlogCardDemo from "./GameDetail";
 
 import "leaflet/dist/leaflet.css";
-import "./styles/App.css";
+import "./styles/Ranking.css";
 import Button from "@material-ui/core/Button";
 
-const App = () => {
+const Ranking = () => {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
@@ -185,4 +185,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Ranking;

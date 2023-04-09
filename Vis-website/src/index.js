@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.css";
-import App from "./App";
+import Ranking from "./Ranking";
+import App from './App';
 import Recommender from "./Recommender";
 // reactDOM is the
 ReactDOM.render(
   <React.Fragment>
-    {/*<App />*/}
+      {/*<Ranking/>*/}
       <App/>
   </React.Fragment>,
 
