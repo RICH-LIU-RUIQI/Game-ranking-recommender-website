@@ -7,7 +7,7 @@ import { showDataOnMap } from "./util";
 import "./styles/Map.css";
 import {render} from "react-dom";
 
-function Map({ countries, casesType, center, zoom }) {
+function Map(props) {
 
   const chartRef = useRef(null);
 
@@ -52,6 +52,12 @@ function Map({ countries, casesType, center, zoom }) {
                 .attr('opacity', 1)
                 .attr('stroke', 'black')
                 .attr('stroke-width', 1);
+          })
+          .on('click', function (d) {
+            props.clickChange(d.properties.name);
+          })
+          .on('dbclick', function (d) {
+            props.clickChange('worldwide');
           })
     })
         .catch((error) => {console.log(error);});

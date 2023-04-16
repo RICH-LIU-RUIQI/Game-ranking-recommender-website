@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import {TextField} from "@material-ui/core";
 import './styles/GameInput.css';
 import data from './dummy_data/listdata.json';
+import Button from "@material-ui/core/Button";
 
 function List(props) {
     const filterData = data.filter((el) => {
@@ -49,7 +50,8 @@ function InputLabel(props) {
 }
 
 
-function Input() {
+function Input(props) {
+    const [stepState, setStepState] = props.step;
     const [inputText, setInputText] = useState('');
     const [gameArray, setGameArray] = useState([]);
     let inputHandler = (e) => {
@@ -57,10 +59,10 @@ function Input() {
         setInputText(text);
     };
     return (
-        <div className='main'>
-            <h1 >Game History</h1>
-            <span >Choose the game you like(at most 5)</span>
+        <div className='main-input'>
+            <h2 >Favorite Games</h2>
             <div className='search'>
+                <div className='tip'>Choose the game you like(at most 5)</div>
                 <TextField
                 fullWidth={true}
                 label='Search'
@@ -74,7 +76,12 @@ function Input() {
                 <h3>Input Game</h3>
                 <InputLabel game={gameArray} />
             </div>
-
+            <div style={{display: 'flex',flex: 'auto', justifyItems: 'flex-end'}}>
+                <Button variant="outlined"
+                        style={{position: 'relative', margin: "auto"}}
+                        onClick={()=>setStepState(stepState + 1)}
+                >Submit</Button>
+            </div>
         </div>
     );
 }

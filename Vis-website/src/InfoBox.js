@@ -5,18 +5,18 @@ import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/four
 
 import "./styles/InfoBox.css";
 
-function InfoBox({ active, isRed, game, cate, total, image, rank, ...props }) {
+function InfoBox({ game, cate, image, rank, ...props }) {
 
   const useStyles = makeStyles(() => ({
-    actionArea: {
-      borderRadius: 16,
-      transition: '0.2s',
-      '&:hover': {
-        transform: 'scale(1.1)',
-      },
-    },
+    // actionArea: {
+    //   borderRadius: 16,
+    //   transition: '0.2s',
+    //   '&:hover': {
+    //     transform: 'scale(1.1)',
+    //   },
+    // },
     card: ({ color }) => ({
-      minWidth: 256,
+      maxWidth: 256,
       borderRadius: 16,
       boxShadow: 'none',
     }),
@@ -42,7 +42,6 @@ function InfoBox({ active, isRed, game, cate, total, image, rank, ...props }) {
     },
     rank: {
       fontFamily: "serif",
-      // fontSize: '2rem',
       color: '#c2bdbd',
       textTransform: 'uppercase',
     }

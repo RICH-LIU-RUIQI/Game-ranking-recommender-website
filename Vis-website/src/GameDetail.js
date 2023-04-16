@@ -18,9 +18,9 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
         transition: '0.3s',
         boxShadow: '0px 14px 80px rgba(34, 35, 58, 0.2)',
         position: 'relative',
-        maxWidth: 500,
-        marginLeft: 20,
-        marginRight: 'auto',
+        // marginLeft: 20,
+        maxWidth: '85%',
+        margin: '0 auto',
         overflow: 'initial',
         background: '#d0caca',
         display: 'flex',
@@ -33,7 +33,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
         },
     },
     media: {
-        width: 300,
+        width: '80%',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: spacing(-1),
@@ -69,7 +69,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     },
 }));
 
-export const BlogCardDemo = React.memo(function BlogCard() {
+export const BlogCardDemo = React.memo(function BlogCard(props) {
     const message = 'shooter, multiplayer, FPS';
     const styles = useStyles();
     const {
@@ -85,20 +85,11 @@ export const BlogCardDemo = React.memo(function BlogCard() {
                     'https://cdn.cloudflare.steamstatic.com/steam/apps/730/ss_118cb022b9a43f70d2e5a2df7427f29088b6b191.jpg?t=1668125812'
                 }
             />
-            <CardContent>
-                {/*<TextInfoContent*/}
-                {/*    classes={contentStyles}*/}
-                {/*    overline={'Free'}*/}
-                {/*    heading={'Counter-Strike: Global Offensive'}*/}
-                {/*    body={*/}
-                {/*        message.substring(0, 50 || message.length)*/}
-                {/*    }*/}
-                {/*/>*/}
                 <div id='card-container' >
-                    <span> Free </span>
+                    <span>Free</span>
                     <h2>Counter-Strike: Global Offensive</h2>
                     <div id='labels' >
-                        <Chip label="shooter" color="primary" size='small' />
+                        <Chip label="shooter" color="primary" size='small'/>
                         <Chip label="multiplayer" color="primary" size='small' />
                         <Chip label="FPS" color="primary" size='small' />
                     </div>
@@ -108,9 +99,7 @@ export const BlogCardDemo = React.memo(function BlogCard() {
                     id='game-link'>
                         Read more
                     </a>
-
                 </Button>
-            </CardContent>
         </Card>
     );
 });

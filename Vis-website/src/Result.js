@@ -7,10 +7,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Colors from './PublicStyle';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: '#325288',
         color: theme.palette.common.white,
     },
     body: {
@@ -39,16 +40,19 @@ const rows = [
 ];
 
 const useStyles = makeStyles({
+    mainResults: {
+        margin: '5 auto',
+    },
     table: {
-        margin: '5%'
+        margin: '10 auto'
     },
 });
 
-export default function ResultsTables() {
+export default function ResultsTables(props) {
     const classes = useStyles();
-
+    const [stepState, setStepState] = props.step;
     return (
-        <div className='main'>
+        <div className={classes.mainResults}>
             <h1>Recommended Games</h1>
             <TableContainer component={Paper} className={classes.table}>
                 <Table aria-label="customized table" >

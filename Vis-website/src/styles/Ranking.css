@@ -9,15 +9,15 @@ body {
 .app {
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
+  flex-direction: row;
 }
 .map{
   border-radius: 6px;
 }
 .app__header>h1 {
-  color: #fc3c3c;
-  font-size: 2rem;
-  text-decoration: underline;
+  color: #114E60;
+  font-size: 3rem;
+  text-decoration: none;
 }
 
 .app__dropdown {
@@ -25,11 +25,12 @@ body {
 }
 
 .app__left {
-  flex: 0.7;
+  flex: 1;
   /* this makes the left side use 90% of its space (for width) */
 }
 
 .app__right {
+  width: 33%;
   display: flex;
   flex-direction: column;
 }
@@ -44,12 +45,14 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  padding-right: 10px;
   justify-content: space-between;
 }
 
 .app__stats {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-direction: row;
 }
 
 .app__graph {

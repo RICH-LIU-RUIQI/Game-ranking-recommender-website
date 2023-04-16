@@ -82,7 +82,8 @@ function ChipsArray() {
     );
 }
 
-export default function ControlledAccordions() {
+export default function ControlledAccordions(props) {
+    const [stepState, setStepState] = props.step;
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -97,7 +98,7 @@ export default function ControlledAccordions() {
     };
 
     return (
-        <div className='main'>
+        <div className='main-filters'>
             <h1>Game Filter</h1>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className='accordion'>
                 <AccordionSummary
@@ -150,7 +151,7 @@ export default function ControlledAccordions() {
                     <ChipsArray/>
                 </AccordionDetails>
             </Accordion >
-            <Button variant="contained">Submit</Button>
+            <Button variant="contained" style={{marginTop: 10}} onClick={()=>setStepState(stepState + 1)}>Submit</Button>
         </div>
     );
 }

@@ -3,12 +3,13 @@
     flex-direction: column;
     justify-content: space-around;
     min-height: 120px;
+    width: 90%;
+    margin-top: 10px;
 }
 
 #card-container span {
     font-size: large;
     font-style: italic;
-
 }
 
 #card-container #labels {
@@ -18,8 +19,9 @@
     margin-top: 10px;
 }
 #card-container h2 {
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
+    text-overflow: fade;
+    text-align: center;
 }
 
 #card-container Button {

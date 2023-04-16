@@ -3,8 +3,9 @@
     background-color: white;
     padding: 1rem;
     border-radius: 20px;
-    margin-top: 16px;
+    margin: 16px auto 0;
     box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+    width: 90%;
 }
 
 .map .leaflet-container {
