@@ -8,6 +8,17 @@ import {Step, StepLabel, Stepper} from "@material-ui/core";
 export default function Recommender() {
     const steps = ['Choose games your like', 'Filter the game', 'get the result'];
     const [stepState, setStepState] = useState(0);
+    // load get related game categories, get result of 20 games
+    // submit history game name, submit filters,
+    const [submitItems, setSubmitItems] = useState({
+        inputGames: [],
+        filters: {
+            price: 100,
+            year: 2000,
+            labels: [],
+        },
+    })
+
     return (
         <div className='main'>
             <div className='header'>
@@ -26,17 +37,20 @@ export default function Recommender() {
                 </Stepper>
             </div>
             <div className='content'>
-                {/*// 立即执行函数与箭头函数的概念不清粗*/}
-                {((stepState, setStepState) => {
+                {((stepState, setStepState, submitItems, setSubmitItems) => {
                     switch (stepState) {
                         case 0:
-                            return <Input step={[stepState, setStepState]} />;
+                            return <Input step={[stepState, setStepState]} submit={[submitItems, setSubmitItems]} />;
                         case 1:
-                            return <ControlledAccordions step={[stepState, setStepState]} />;
+                            return <ControlledAccordions step={[stepState, setStepState]} submit={[submitItems, setSubmitItems]} />;
                         default:
-                            return <ResultsTables step={[stepState, setStepState]} />;
+                            if(submitItems.inputGames.length === 0) {
+                                alert('We don\'t receive any input' );
+                                return <Input step={[stepState, setStepState]} submit={[submitItems, setSubmitItems]} />;
+                            }
+                            return <ResultsTables submit={[submitItems, setSubmitItems]} />;
                         }
-                    }) (stepState, setStepState)
+                    }) (stepState, setStepState, submitItems, setSubmitItems)
                 }
             </div>
         </div>

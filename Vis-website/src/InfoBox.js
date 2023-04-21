@@ -5,20 +5,14 @@ import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/four
 
 import "./styles/InfoBox.css";
 
-function InfoBox({ game, cate, image, rank, ...props }) {
+function InfoBox({ game, rank, click }) {
 
   const useStyles = makeStyles(() => ({
-    // actionArea: {
-    //   borderRadius: 16,
-    //   transition: '0.2s',
-    //   '&:hover': {
-    //     transform: 'scale(1.1)',
-    //   },
-    // },
     card: ({ color }) => ({
-      maxWidth: 256,
+      width: 256,
       borderRadius: 16,
       boxShadow: 'none',
+      height: '100%',
     }),
     content: ({ color }) => {
       return {
@@ -28,9 +22,12 @@ function InfoBox({ game, cate, image, rank, ...props }) {
     },
     title: {
       fontFamily: 'Keania One',
-      fontSize: '2rem',
+      fontSize: '1.5rem',
       color: '#fff',
       textTransform: 'uppercase',
+      overflow:'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
     },
     subtitle: {
       fontFamily: 'Montserrat',
@@ -46,18 +43,21 @@ function InfoBox({ game, cate, image, rank, ...props }) {
       textTransform: 'uppercase',
     }
   }));
-  const classes = useStyles({ color: '#34241e' });
+  const classes = useStyles({ color: '#58707b' });
   const mediaStyles = useFourThreeCardMediaStyles();
+  const arrCate = game.categories.split(" ").slice(0, 3).join(', ');
 
   return (
-      <Card className={classes.card}>
-        <CardMedia classes={mediaStyles} image={image}/>
+      <Card className={classes.card} >
+        <div>
+          <CardMedia classes={mediaStyles} image={game.header_image} onClick={() => {click(game)}}/>
+        </div>
         <CardContent className={classes.content}>
           <Typography className={classes.title} variant={'h2'}>
-            {game}
+            {game.name}
           </Typography>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Typography className={classes.subtitle}>{cate}</Typography>
+            <Typography className={classes.subtitle}>{arrCate}</Typography>
             <span></span>
             <Typography variant={'h3'} className={classes.rank}>{rank}</Typography>
           </div>

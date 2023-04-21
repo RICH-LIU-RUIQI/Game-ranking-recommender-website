@@ -6,11 +6,11 @@ import "./styles/Table.css";
 function Table({ countries }) {
   return (
     <div className="table">
-      {countries.map(({ country, cases }, id) => (
+      {countries.map(({ region, name }, id) => (
         <tr key={id}>
-          <td>{country}</td>
+          <td>{region}</td>
           <td>
-            <strong>Counter-Strike</strong>
+            <strong>{name}</strong>
           </td>
         </tr>
       ))}

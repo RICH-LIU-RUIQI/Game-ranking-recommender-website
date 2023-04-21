@@ -19,9 +19,12 @@
     margin-top: 10px;
 }
 #card-container h2 {
-    /*white-space: nowrap;*/
     text-overflow: fade;
-    text-align: center;
+    margin: auto;
+    padding-bottom: 2%;
+    color: #080808;
+    font-style: italic;
+    font-size: x-large;
 }
 
 #card-container Button {

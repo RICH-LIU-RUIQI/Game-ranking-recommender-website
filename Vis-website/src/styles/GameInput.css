@@ -24,15 +24,19 @@ h2 {
     margin-bottom: 10px;
 }
 
-ul li {
+.gamesUl li {
     list-style: none;
+    margin: auto;
 }
 
-ul{
+.gamesUl {
     width: 100%;
     height: auto;
     margin:0;
     padding:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .choice {

@@ -18,8 +18,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
         transition: '0.3s',
         boxShadow: '0px 14px 80px rgba(34, 35, 58, 0.2)',
         position: 'relative',
-        // marginLeft: 20,
-        maxWidth: '85%',
+        width: '77%',
         margin: '0 auto',
         overflow: 'initial',
         background: '#d0caca',
@@ -28,7 +27,6 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
         alignItems: 'center',
         paddingBottom: spacing(2),
         [breakpoints.up('md')]: {
-            // flexDirection: 'row',
             paddingTop: spacing(2),
         },
     },
@@ -70,36 +68,29 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
 }));
 
 export const BlogCardDemo = React.memo(function BlogCard(props) {
-    const message = 'shooter, multiplayer, FPS';
     const styles = useStyles();
     const {
         button: buttonStyles,
         ...contentStyles
     } = useBlogTextInfoContentStyles();
     const shadowStyles = useOverShadowStyles();
+    const arrCate = props.details.categories.split(" ").slice(0, 3);
     return (
         <Card className={cx(styles.root, shadowStyles.root)}>
             <CardMedia
                 className={styles.media}
-                image={
-                    'https://cdn.cloudflare.steamstatic.com/steam/apps/730/ss_118cb022b9a43f70d2e5a2df7427f29088b6b191.jpg?t=1668125812'
-                }
+                image={props.details.header_image}
             />
-                <div id='card-container' >
-                    <span>Free</span>
-                    <h2>Counter-Strike: Global Offensive</h2>
-                    <div id='labels' >
-                        <Chip label="shooter" color="primary" size='small'/>
-                        <Chip label="multiplayer" color="primary" size='small' />
-                        <Chip label="FPS" color="primary" size='small' />
-                    </div>
-                </div>
-                <Button style={{marginTop: 20, backgroundColor: 'darkblue'}}>
-                    <a href='https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/'
-                    id='game-link'>
-                        Read more
-                    </a>
-                </Button>
+            <div id='card-container' >
+                <h2>{props.details.price}</h2>
+                <video src={props.details.movie} autoPlay={true} controls={true} loop={false} />
+            </div>
+            <Button style={{marginTop: 20, backgroundColor: '#325288'}}>
+                <a href={'https://store.steampowered.com/app/' + props.details.appid.toString()}  // props.details.url
+                id='game-link'>
+                    Learn more
+                </a>
+            </Button>
         </Card>
     );
 });

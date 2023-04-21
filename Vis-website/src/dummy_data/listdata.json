@@ -1,31 +1,26 @@
-[{
-  "id": 1,
-  "game": "CSGO"
-}, {
-  "id": 2,
-  "game": "Kill Bill"
-}, {
-  "id": 3,
-  "game": "OverWatch"
-}, {
-  "id": 4,
-  "game": "Black Man"
-}, {
-  "id": 5,
-  "game": "Avatar"
-}, {
-  "id": 6,
-  "game": "Mine World"
-}, {
-  "id": 7,
-  "game": "PUBG"
-}, {
-  "id": 8,
-  "game": "Civilization IV"
-}, {
-  "id": 9,
-  "game": "Pandas"
-}, {
-  "id": 10,
-  "game": "England"
-}]
+[
+  {
+    "region": "United State",
+    "name": "CSGO"
+  },
+  {
+    "region": "Brazil",
+    "name": "PUBG"
+  },
+  {
+    "region": "China",
+    "name": "CIVI 6"
+  },
+  {
+    "region": "Hongkong",
+    "name": "ALIBABA"
+  },
+  {
+    "region": "Thailand",
+    "name": "OVERWATCH"
+  },
+  {
+    "region": "Australia",
+    "name": "CSGO"
+  }
+]

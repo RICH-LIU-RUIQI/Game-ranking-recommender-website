@@ -13,8 +13,6 @@ import TagFacesIcon from '@material-ui/icons/TagFaces';
 import './styles/Filter.css'
 import Button from "@material-ui/core/Button";
 
-
-
 const useStylesChips = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -44,15 +42,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ChipsArray() {
+function ChipsArray(props) {
     const classes = useStylesChips();
-    const [chipData, setChipData] = React.useState([
-        { key: 0, label: 'FPS' },
-        { key: 1, label: 'Multiplayer' },
-        { key: 2, label: 'Adventure' },
-        { key: 3, label: 'Fun' },
-        { key: 4, label: 'Thriller' },
-    ]);
+    const [chipData, setChipData] = props.chips;
 
     const handleDelete = (chipToDelete) => () => {
         setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
@@ -84,17 +76,44 @@ function ChipsArray() {
 
 export default function ControlledAccordions(props) {
     const [stepState, setStepState] = props.step;
+    const [submitItems, setSubmitItems] = props.submit;
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
-    const [value, setValue] = React.useState(10);
+    const [price, setPrice] = React.useState(10);
+    const [year, setYear] = React.useState(2000);
+    const [chipData, setChipData] = React.useState([
+        { key: 0, label: 'English' },
+        { key: 1, label: 'French' },
+        { key: 2, label: 'Spanish' },
+        { key: 3, label: 'Chinese' },
+        { key: 4, label: 'Arabic ' },
+        { key: 5, label: 'German' },
+        { key: 6, label: 'Russian' },
+        { key: 7, label: 'Portuguese' },
+    ]);
+
 
     const handlePrice = (event, newValue) => {
-        setValue(newValue);
+        setPrice(parseInt(newValue));
     };
-
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
+    };
+    const handleSubmit = () => {
+        let submitLabels = [];
+        chipData.forEach((value) => {
+            submitLabels.push(value.label)
+        });
+        setSubmitItems({
+            inputGames: submitItems.inputGames,
+            filters: {
+                price: price,
+                year: year,
+                labels: submitLabels,
+            },
+        });
+        setStepState(stepState+1);
     };
 
     return (
@@ -110,11 +129,11 @@ export default function ControlledAccordions(props) {
                     <Typography className={classes.secondaryHeading}>Filter games less than</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Slider value={value}
+                    <Slider value={price}
                             onChange={handlePrice}
                             aria-labelledby="continuous-slider"
                             valueLabelDisplay="auto"
-                            max={50}
+                            max={200}
                     />
                 </AccordionDetails>
             </Accordion>
@@ -133,6 +152,9 @@ export default function ControlledAccordions(props) {
                     <TextField
                         label='Year'
                         variant='outlined'
+                        onChange={(e) => {
+                            setYear(parseInt(e.target.value))
+                        }}
                     />
                 </AccordionDetails>
             </Accordion>
@@ -142,16 +164,16 @@ export default function ControlledAccordions(props) {
                     aria-controls="panel3bh-content"
                     id="panel3bh-header"
                 >
-                    <Typography className={classes.heading}>Category</Typography>
+                    <Typography className={classes.heading}>Language</Typography>
                     <Typography className={classes.secondaryHeading}>
-                        Find the game type you want
+                        Filter games by language
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <ChipsArray/>
+                    <ChipsArray chips={[chipData, setChipData]}/>
                 </AccordionDetails>
             </Accordion >
-            <Button variant="contained" style={{marginTop: 10}} onClick={()=>setStepState(stepState + 1)}>Submit</Button>
+            <Button variant="contained" style={{marginTop: 10}} onClick={handleSubmit}>Submit</Button>
         </div>
     );
 }
