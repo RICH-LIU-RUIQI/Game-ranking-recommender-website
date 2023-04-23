@@ -34,6 +34,8 @@ public class Game {
 
     private String popularity;
 
+    private String release_year;
+
 
 
     public Game(int appid) {
@@ -84,9 +86,8 @@ public class Game {
             this.description = data.get("short_description").toString();
             this.age=data.get("required_age").toString();
             this.language=data.get("supported_languages").toString();
-
-
-            //this.age =  data.get("required_age");
+            String release_date= data.get("release_date").toString();
+            this.release_year = release_date.substring(release_date.length() - 5,release_date.length() - 1);
         }
     }
 
@@ -165,6 +166,14 @@ public class Game {
     public String getLanguage() {return language;}
 
     public void setLanguage(String language) {this.language = language; }
+
+    public String getRelease_year() {
+        return release_year;
+    }
+
+    public void setRelease_year(String release_year) {
+        this.release_year = release_year;
+    }
 }
 
 

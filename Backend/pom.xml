@@ -28,7 +28,6 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-
     <!-- servlet 依赖 -->
     <dependency>
       <groupId>javax.servlet</groupId>

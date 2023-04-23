@@ -6,9 +6,6 @@ import time
 import pickle
 from datasketch import MinHash, MinHashLSHForest
 
-import unicodedata
-
-
 #Number of Permutations
 permutations = 128
 
@@ -43,7 +40,7 @@ def preprocess(text):
     return tokens
 
 def get_forest(test_column, data_games, perms):
-    start_time = time.time()
+    #start_time = time.time()
 
     minhash = []
 
@@ -63,12 +60,12 @@ def get_forest(test_column, data_games, perms):
 
     forest.index()
 
-    print('It took %s seconds to build forest.' % (time.time() - start_time))
+    #print('It took %s seconds to build forest.' % (time.time() - start_time))
 
     return forest
 
 def predict(test_column, game_name, data_games, perms, num_recommendations, forest):
-    start_time = time.time()
+    #start_time = time.time()
     
     if game_name not in list_games:
         return []
@@ -88,9 +85,9 @@ def predict(test_column, game_name, data_games, perms, num_recommendations, fore
 
     idx_array = np.array(forest.query(m, num_recommendations + 1))
     if len(idx_array) == 0:
-        return []  # if your query is empty, return none
+        return []  # if your query is empty, return []
 
-    result = data_games.iloc[idx_array[1:]]['Name']
+    result = data_games.iloc[idx_array]['Name']
 
     #print('It took %s seconds to query forest.' % (time.time() - start_time))
 
@@ -169,39 +166,8 @@ def generate_recommendation_website(test_column, user_data, location_forest):
     else:
         final_recommendations = final_recommendations["Name"].tolist()[0:num_recommendations]
 
-    for fr in final_recommendations:
-        print(fr.encode('utf-8'))
+    idx = indices[final_recommendations]
+    final_recommendations_appid = data_games.iloc[idx]['AppID'].tolist()
+    print(final_recommendations_appid)
 
 
-# test_column = 'developers_tags'
-# test_column2 = 'Developers'
-# test_column3 = 'Tags'
-# location_forest = pathlib.Path(r'../../data/forest_data/developers_tags_forest.pickle')
-# location_forest2 = pathlib.Path(r'../../data/forest_data/developers_forest.pickle')
-# location_forest3 = pathlib.Path(r'../../data/forest_data/tags_forest.pickle')
-
-# '''
-# forest = get_forest(test_column, data_games, permutations)
-# with open(location_forest, 'wb') as f:
-#     pickle.dump(forest, f)
-
-# forest2 = get_forest(test_column2, data_games, permutations)
-# with open(location_forest2, 'wb') as f:
-#     pickle.dump(forest2, f)
-
-# forest3 = get_forest(test_column3, data_games, permutations)
-# with open(location_forest3, 'wb') as f:
-#     pickle.dump(forest3, f)
-    
-# with open(location_forest, 'rb') as f:
-#     forest = pickle.load(f)
-
-# game_name = "Destiny 2"
-# result = predict(test_column, game_name, data_games, permutations, num_recommendations, forest)
-# print('\n Top Recommendation(s) is(are) \n', result)
-
-# user_data = ["Apex Legends™"]
-# generate_recommendation_website(test_column, user_data, location_forest)
-# '''
-# generate_recommendation_output(pathlib.Path(r'../../data/output_data/min_hash_lsh_output_developers.csv'), test_column2, location_forest2)
-# generate_recommendation_output(pathlib.Path(r'../../data/output_data/min_hash_lsh_output_tags.csv'), test_column3, location_forest3)
